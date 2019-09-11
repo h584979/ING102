@@ -1,0 +1,130 @@
+/* Basic stiler */
+
+body {
+    background: white;
+    font-size: 16px;
+    font-family: "PT Serif", Georgia, serif;
+    line-height: 28px;
+    color: #777777;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #31373a;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+}
+
+
+/* Navigasjonsbar */
+
+.main-nav ul,
+.main_menu li ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 35px 0;
+}
+
+.main-nav ul li {
+    float: left;
+    display: block;
+    margin-left: 20px;
+    position: relative;
+}
+
+.main-nav ul li a {
+    color: #31373a;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Raleway", sans-serif;
+    padding: 5px 15px;
+    display: block;
+}
+
+.main-nav ul li a:hover {
+    color: red;
+}
+
+.main-nav ul li.active a {
+    color: red;
+    background-color: #f1f4f5;
+}
+
+a,
+a:visited {
+    color: red;
+    text-decoration: none !important;
+    outline: 0;
+}
+
+/* Banner */
+
+#banner {
+    background-image: url("../images/banner.jpg");
+}
+
+.banner-style {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding: 2em 0;
+    margin: 108px -0.5em 0 -0.5em;
+}
+
+.banner-style h2 {
+    font-size: 29px;
+    font-weight: 800;
+    color: white;
+    margin-left: 1em;
+}
+
+/* Container (hoved tekst) */
+
+.container {
+    padding: 1em;
+}
+
+/* Liste */
+
+.list {
+    list-style: none;
+}
+
+.list li:before {
+    content: "-";
+    padding-right: 5px;
+}
+
+/* Tabell */
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Profil side */
+
+.profile p {
+    margin-left: 12em;
+}
