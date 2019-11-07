@@ -12,6 +12,8 @@ function Regning() {
         document.getElementById("pSum").innerHTML = inputTall1 / inputTall2;
     } else if (selectedRegning == "*") {
         document.getElementById("pSum").innerHTML = inputTall1 * inputTall2;
+    } else if (selectedRegning == "%") {
+        document.getElementById("pSum").innerHTML = inputTall1 % inputTall2;
     }
 
 }
