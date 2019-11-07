@@ -159,14 +159,18 @@ input {
 /* Link og sticky boks */
 
 .linkButton {
-    background-color: grey;
-    color: white !important;
+    color: #31373a !important;
     padding: 10px 30px;
     display: inline-block;
+
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Raleway", sans-serif;
 }
 
 .linkButton:hover {
-    color: lightgrey !important;
+    color: red !important;
 }
 
 .stickyBox {
