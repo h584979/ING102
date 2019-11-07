@@ -1,8 +1,17 @@
-function Addisjon() {
-    var inputTall1 = document.getElementById("tall1").value;
-    var inputTall2 = document.getElementById("tall2").value;
+function Regning() {
+    var selectedRegning = document.getElementById("tallRegning").value;
 
-    var sum = inputTall1 * inputTall2;
+    var inputTall1 = parseInt(document.getElementById("tall1").value);
+    var inputTall2 = parseInt(document.getElementById("tall2").value);
 
-    document.getElementById("pSum").innerHTML = sum;
+    if (selectedRegning == "+") {
+        document.getElementById("pSum").innerHTML = inputTall1 + inputTall2;
+    } else if (selectedRegning == "-") {
+        document.getElementById("pSum").innerHTML = inputTall1 - inputTall2;
+    } else if (selectedRegning == "/") {
+        document.getElementById("pSum").innerHTML = inputTall1 / inputTall2;
+    } else if (selectedRegning == "*") {
+        document.getElementById("pSum").innerHTML = inputTall1 * inputTall2;
+    }
+
 }

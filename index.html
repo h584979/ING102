@@ -18,9 +18,9 @@
         <nav class="main-nav">
             <ul>
                 <li class="active"><a href="index.html">Hjem</a></li>
-                <li><a href="oss.html">Om oss</a></li>
                 <li><a href="studiet.html">Studiet</a></li>
                 <li><a href="utdanningsplan.html">Utdanningsplan</a></li>
+                <li><a href="prosjekt.html">Prosjekt</a></li>
             </ul>
         </nav>
     </header>
@@ -56,9 +56,15 @@
         </ul>
         <h5>Enkel kalkulator</h5>
         <div class="inputDiv">
-            <input id="tall1" type="number" /> <input onclick="Addisjon()" style="margin:1%;" type="button" value="*" />
-            <input id="tall2" type="number" />
-            =
+            <input class="inputTall" id="tall1" type="number" />
+            <select id="tallRegning">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="/">/</option>
+                <option value="*">*</option>
+            </select>
+            <input class="inputTall" id="tall2" type="number" />
+            <button onclick="Regning()">=</button>
         </div>
         <p id="pSum"></p>
     </div>

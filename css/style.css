@@ -130,7 +130,9 @@ td {
 }
 
 .imgNettside {
-    width: 69%;
+    width: 70%;
+    margin: 0 auto;
+    display: table;
 }
 
 .imgProfil {
@@ -145,11 +147,38 @@ input {
     text-align: center;
 }
 
-#pSum {
-    float: center;
-}
-
 .inputDiv {
     float: left;
     width: 23em;
+}
+
+.inputTall {
+    width: 30%;
+}
+
+/* Link og sticky boks */
+
+.linkButton {
+    background-color: grey;
+    color: white !important;
+    padding: 10px 30px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 1%;
+}
+
+.linkButton:hover {
+    color: lightgrey !important;
+}
+
+.stickyBox {
+    width: 375px;
+    padding: 3%;
+    margin: 2%;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
 }
