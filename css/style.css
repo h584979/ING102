@@ -162,9 +162,7 @@ input {
     background-color: grey;
     color: white !important;
     padding: 10px 30px;
-    text-align: center;
     display: inline-block;
-    margin-left: 1%;
 }
 
 .linkButton:hover {
@@ -172,13 +170,14 @@ input {
 }
 
 .stickyBox {
-    width: 375px;
-    padding: 3%;
-    margin: 2%;
-    position: sticky;
-    top: 0;
+    width: 100%;
+    padding: 2%;
+    position: fixed;
+    left: 0;
     bottom: 0;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
     border-color: black;
+    background-color: white;
+    text-align: center;
 }
