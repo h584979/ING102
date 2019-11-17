@@ -185,3 +185,22 @@ input {
     background-color: white;
     text-align: center;
 }
+
+pre {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    overflow-y: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    background: #efefef;
+    border: 1px solid #777;
+    padding: 10px;
+    color: #333;
+}
+
+.figurBilder {
+    width: 25%;
+}

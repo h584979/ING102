@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Gruppe 10 - Om oss</title>
+
+    <!-- Font hentet fra Google -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900,800,700,500,200,100,600" rel="stylesheet" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Hjem</a></li>
+                <li><a href="studiet.html">Studiet</a></li>
+                <li><a href="utdanningsplan.html">Utdanningsplan</a></li>
+                <li><a href="prosjekt.html">Prosjekt</a></li>
+                <li class="active"><a href="matlab.html">MATLAB</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner-style" id="banner">
+        <h2>
+            &lt; gruppe10 &gt;
+        </h2>
+    </div>
+
+    <div class="container">
+        <h2>MATLAB Oppgave</h2>
+
+        <p>Her er noen bilder fra MATLAB oppgaven vår, og kildekoden nederst.</p>
+
+        <br />
+
+        <img src="images/figur1_1.png" class="figurBilder" />
+        <img src="images/figur1_2.png" class="figurBilder" />
+        <img src="images/figur1_3.png" class="figurBilder" />
+        <img src="images/figur1_4.png" class="figurBilder" />
+        <img src="images/figur1_5.png" class="figurBilder" />
+        <img src="images/figur1_6.png" class="figurBilder" />
+        <h4>Kildekode</h4>
+        <pre>
+function geodata
+    % Select a data set from the pop-up menu and display
+    f = figure('Position',[250,250,500,350]);
+    h = [];
+    t = 0;
+    dt = 0.1;
+        
+    % Construct the components.
+     h(1) = uicontrol('Style','popupmenu',...
+                'String',{'Peaks','Membrane','Sinc','Weird','Wave','Sine'},...
+                'Position',[335,20,100,25],...
+                'Callback',@popup_menu_Callback);      
+        
+    h(2) = axes('Units','pixels','Position',[50,30,255,255]);
+            
+    h(3) = uicontrol('Style','pushbutton',...
+                'String','x-view',...
+                'Position',[335, 55, 100, 25],...
+                'Callback',@view_CallbackX);
+              
+     h(4) = uicontrol('Style','pushbutton',...
+                'String','y-view',...
+                'Position',[335, 80, 100, 25],...
+                'Callback',@view_CallbackY);
+            
+    h(5) = uicontrol('Style','pushbutton',...
+                'String','top view',...
+                'Position',[335, 105, 100, 25],...
+                'Callback',@view_CallbackTop);
+                    
+    h(6) = uicontrol('Style','pushbutton',...
+                'String','rot right',...
+                'Position',[335, 230, 100, 25],...
+                'Callback',@rot_right_Callback);
+            
+    h(7) = uicontrol('Style','pushbutton',...
+                'String','rot left',...
+                'Position',[335, 255, 100, 25],...
+                'Callback',@rot_left_Callback);
+            
+    % Timer start-button
+     h(8) = uicontrol('Style','pushbutton',...
+                'String','Start',...
+                'Position',[335, 205, 50, 25],...
+                'Callback',@start_timer_Callback);
+            
+    % Timer stop-button
+     h(9) = uicontrol('Style','pushbutton',...
+                'String','Stop',...
+                'Position',[385,205,50,25],...
+                'Callback',@stop_timer_Callback);
+            
+    h(10) = uicontrol('Style','pushbutton',...
+                'String','Fly',...
+                'Position',[335,180,100,25],...
+                'Callback',@fly_Callback);
+                    
+    % Assure resize automatically.
+    f.Units = 'normalized';
+    set(h, 'Units', 'normalized');
+    set(h, 'FontSize', 12);
+        
+    % Generate the data to plot.
+            
+    % Peaks dataset
+    peaks_data = peaks(35);
+            
+    % Membrane dataset
+    membrane_data = membrane;
+            
+    % Sinc dataset
+    [x,y] = meshgrid(-8:.5:8);
+    r = sqrt(x.^2+y.^2) + eps;
+    sinc_data = sin(r)./r;
+            
+    % Weird dataset
+    [x,y] = meshgrid(-10:.5:10);
+    z = y.*sin(x) - x.*cos(y);
+    weird_data = z;
+            
+    % Wave dataset
+    [x,y] = meshgrid(1:0.5:10,1:20);
+    z = sin(x) + cos(y);
+    wave_data = z;
+            
+    % Sine dataset
+    x = -15:0.5:15;
+    y = -15:0.5:15;
+    [x,y] = meshgrid(x,y);
+    r = sqrt(x.^2+y.^2);
+    sine_data = sin(r);
+        
+    % Create a plot in the axes.
+    current_data = peaks_data;
+    s = surf(current_data);
+    % [az, el] = view;
+            
+    xlabel('x-axis');
+    ylabel('y-axis');
+    zlabel('z-axis');
+            
+    %Set up and read audiofile
+    [xG, fs] = audioread('helicopter-hovering-01.wav');
+    S = 20;
+    x = xG(1:fs*S);
+            
+    rec = audioplayer(x, fs*1.2);
+    set(rec, 'TimerFcn', @timer_Callback, 'TimerPeriod', dt);
+        
+    % view-x callback. Changes view to x-axis.
+    function view_CallbackX(~, ~)
+        view(0, 0);
+    end
+        
+    %view-y callback. Changes view to y-axis.
+    function view_CallbackY(~, ~)
+        view(90, 0);
+    end
+        
+    %view-top callback. Changes view to top down.
+    function view_CallbackTop(~, ~)
+        view(2);
+     end
+        
+    % Executes on button press 'rot right'. Rotates along the z-axis
+    function rot_right_Callback(~, ~)
+        camorbit(5,0,'camera')
+        drawnow
+        % rotate(s, [0 0 1], 5);
+    end
+        
+    % Executes on button press 'rot left'. Rotates along the z-axis
+    function rot_left_Callback(~, ~)
+        camorbit(-5,0,'camera')
+        drawnow
+        % rotate(s, [0 0 1], -5);
+    end
+            
+    % Executes on button press 'Start'
+    function start_timer_Callback(hObject, eventdata, handles)
+        handles.ctr = 1;
+        handles.hTimer = timer('TimerFcn',{@timer_Callback,handles},...
+                            'Period',.1,'ExecutionMode','FixedRate');
+        start(handles.hTimer);
+        play_audio_Callback();
+    end
+            
+    % Executes on button press 'Stop'
+    function stop_timer_Callback(hObject, eventdata, handles)
+        timerObjs = timerfindall; % Search for timer object
+        if ~isempty(timerObjs)
+            stop(timerObjs); %If a timer exists, stop the timer
+        end
+        stop_audio_Callback();
+    end
+        
+    function play_audio_Callback(~, ~)
+        t = 0;
+        play(rec, fs);
+    end
+        
+    function stop_audio_Callback(~, ~)
+        stop(rec);
+    end
+        
+    % Executes once per timer period (0.1s)
+    function timer_Callback(hObject, eventdata, handles)
+        t = t + dt;
+                
+        direction = [0 0 1];
+        rotate(s, direction, 1);
+        text = sprintf("Time: %d", int64(t));
+        title(text);
+    end
+            
+    % Rotate camera view 360 degrees around the z-axis
+    function fly_Callback(~, ~)
+        for i = 1:360
+            camorbit(1,0,'camera')
+            drawnow
+        end
+    end
+        
+    %  Pop-up menu callback. Read the pop-up menu Value property to
+    function popup_menu_Callback(source,eventdata) 
+        % Determine the selected data set.
+        str = get(source, 'String');
+        val = get(source,'Value');
+        % Set current data to the selected data set.
+        switch str{val};
+        case 'Peaks' % User selects Peaks.
+            current_data = peaks_data;
+        case 'Membrane' 
+            current_data = membrane_data;
+        case 'Sinc' 
+            current_data = sinc_data;
+        case 'Weird'
+            current_data = weird_data;
+        case 'Wave'
+            current_data = wave_data;
+        case 'Sine'
+            current_data = sine_data;         
+        end
+        s = surf(current_data);
+        % Re-draw labels when plotting new data
+        xlabel('x-axis');
+        ylabel('y-axis');
+        zlabel('z-axis');
+    end
+end
+        </pre>
+
+
+    </div>
+</body>
+
+</html>
